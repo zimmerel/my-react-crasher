@@ -1,0 +1,17 @@
+.root {
+  margin: 24px;
+  color: red;
+  background: rgb(245, 245, 245);
+  padding: 10px;
+}
+
+.stack {
+  text-align: left;
+  font-size: small;
+  margin: 50px;
+}
+
+.reset {
+  border: rgb(225, 225, 225);
+  height: 30px;
+}
