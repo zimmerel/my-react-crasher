@@ -1,25 +1,28 @@
-import { render } from '@testing-library/react';
-import { BugSplat } from 'bugsplat-react';
+import { render, screen } from '@testing-library/react';
+// import { BugSplat } from 'bugsplat-react';
 import App from './App';
 
-jest.mock('bugsplat', () => ({
-  BugSplat: jest.fn(() => ({
-    post: jest.fn(),
-  })),
-}));
+// const mockPost = jest.fn(async () => ({}));
+// jest.mock('bugsplat-react', () => ({
+//   BugSplat: jest.fn().mockImplementation(() => ({
+//     post: mockPost,
+//   })),
+// }));
 
-const BugSplatMock = jest.fn<BugSplat, []>();
+// beforeEach(() => {
+//   mockPost.mockClear();
+// });
 
 describe('<App />', () => {
-  let bugsplat: BugSplat;
+  // let bugsplat: BugSplat;
 
-  beforeEach(() => {
-    bugsplat = new BugSplat('fred', 'my-react-crasher', '9001.0.0');
-  });
+  // beforeEach(() => {
+  //   bugsplat = new BugSplat('fred', 'my-react-crasher', '9001.0.0');
+  // });
 
-  test('renders learn react link', () => {
-    const { getByText } = render(<App />);
-    const linkElement = getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
+  it('should render title in h1 tag', () => {
+    render(<App />);
+    const titleElement = screen.getByText('Welcome to my-react-crasher');
+    expect(titleElement).toBeInTheDocument();
   });
 });

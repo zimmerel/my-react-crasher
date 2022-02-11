@@ -1,24 +1,34 @@
-import { FallbackProps } from 'bugsplat-react';
+import { FallbackProps, useBugSplat } from 'bugsplat-react';
 import styles from './Fallback.module.css';
 
-const Stack = ({ error }: { error: Error }) => (
-  <div className={styles.stack}>
-    <h4>Stack Trace</h4>
-    {error.stack?.split('\n').map((line, i) => (
-      <div key={i}>{line}</div>
-    ))}
-  </div>
-);
+const CrashLink = (props: { crashId: number; database: string }) => {
+  const { crashId, database } = props;
 
-export default function Fallback({ error, resetErrorBoundary }: FallbackProps) {
+  const url = `https://app.bugsplat.com/v2/crash?database=${database}&id=${crashId}`;
+
+  return (
+    <a href={url}>
+      Crash {crashId} in database {database}
+    </a>
+  );
+};
+
+export default function Fallback({
+  resetErrorBoundary,
+  response,
+}: FallbackProps) {
+  const bugSplat = useBugSplat();
+  const database = bugSplat?.database;
+  const crashId =
+    response?.error === null ? response.response.crash_id : undefined;
+
   return (
     <div className={styles.root}>
-      <h3>Oops. An error has occurred.</h3>
-      <h4>
-        {error.name}: <small>{error.message}</small>
-      </h4>
-
-      <Stack error={error} />
+      {crashId && database && (
+        <p>
+          <CrashLink crashId={crashId} database={database} />
+        </p>
+      )}
       <button className={styles.reset} onClick={resetErrorBoundary}>
         <h2>Reset</h2>
       </button>

@@ -62,3 +62,24 @@ h2 {
 .content p {
   padding: 0 24px;
 }
+
+.errors {
+  margin-top: 5px;
+  background: rgb(225, 225, 225);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+button.error:hover {
+  background: rgb(245, 245, 245);
+}
+
+button.error:focus {
+  border: 3px solid #007bff;
+}
+
+button.error > h4 {
+  margin-top: 0;
+}

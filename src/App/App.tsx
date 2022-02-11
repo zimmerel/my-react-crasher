@@ -1,10 +1,8 @@
-import { MouseEvent } from 'react';
-import { BugSplat, ErrorBoundary } from 'bugsplat-react';
+import { ErrorBoundary, useErrorHandler } from 'bugsplat-react';
 import logo from '../assets/bugsplat-logo.png';
 import styles from './App.module.css';
-import { useState } from 'react';
-import ErrorBlock from '../ErrorBlock';
 import Fallback from '../Fallback';
+import { useState } from 'react';
 
 const TITLE = 'my-react-crasher';
 const BUGSPLAT_URL = 'https://www.bugsplat.com/';
@@ -23,7 +21,14 @@ const ERRORS: Error[] = [
   RangeError('The argument must be between -500 and 500'),
 ];
 
+function ErrorDisplay(props: { error: Error | null }) {
+  useErrorHandler(props.error);
+  return null;
+}
+
 function App() {
+  const [error, setError] = useState<Error | null>(null);
+
   return (
     <div className={styles.root}>
       <a href={BUGSPLAT_URL}>
@@ -36,9 +41,26 @@ function App() {
           reporting for {LINKS.react} applications built with JavaScript or
           TypeScript.
         </p>
-        <ErrorBoundary fallback={Fallback}>
-          <ErrorBlock errors={ERRORS} />
+        <ErrorBoundary
+          fallback={(props) => <Fallback {...props} />}
+          onReset={() => setError(null)}
+          resetKeys={[error]}
+        >
+          <ErrorDisplay error={error} />
         </ErrorBoundary>
+        <div className={styles.errors}>
+          <h2>Errors</h2>
+          {ERRORS.map((error) => (
+            <button
+              key={error.name}
+              className={styles.error}
+              onClick={() => setError(error)}
+            >
+              <h2>{error.name}</h2>
+              <h4>{error.message}</h4>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
