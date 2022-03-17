@@ -1,10 +1,9 @@
 {
   "name": "my-react-crasher",
   "version": "1.0.0",
-  "database": "fred",
   "private": true,
   "dependencies": {
-    "bugsplat-react": "file:../bugsplat-react",
+    "bugsplat-react": "github:zimmerel/bugsplat-react",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^5.0.0"
@@ -14,9 +13,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "load-env": "node -r dotenv/config",
-    "check-env": "node -e 'console.log(process.env)' | grep npm",
-    "symbol-upload": "node ./scripts/symbols.js -b fred -d ./build/static/js",
+    "symbol-upload": "env-cmd symbol-upload -d ./build/static/js",
     "start:build": "npm run build && npm run symbol-upload && http-server ./build"
   },
   "eslintConfig": {
@@ -46,7 +43,7 @@
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
-    "dotenv": "^16.0.0",
+    "env-cmd": "^10.1.0",
     "http-server": "^14.1.0",
     "prettier": "^2.5.1",
     "typescript": "^4.6.2"

@@ -13,15 +13,19 @@ export default function Fallback({
   const crashId =
     response?.error === null ? response.response.crash_id : undefined;
 
+  const link = crashId && database && (
+    <a
+      href={`${BASE_CRASH_URL}?database=${database}&id=${crashId}`}
+      target="_blank"
+      rel="noreferrer"
+    >
+      Crash {crashId} in database {database}
+    </a>
+  );
+
   return (
     <div className={styles.root}>
-      {crashId && database && (
-        <p>
-          <a href={`${BASE_CRASH_URL}?database=${database}&id=${crashId}`}>
-            Crash {crashId} in database {database}
-          </a>
-        </p>
-      )}
+      <p>{response ? link : 'loading...'}</p>
       <button className={styles.reset} onClick={resetErrorBoundary}>
         <h2>Reset</h2>
       </button>

@@ -5,7 +5,13 @@ import App from './App';
 import './index.css';
 import pkg from '../package.json';
 
-const bugsplat = new BugSplat(pkg.database, pkg.name, pkg.version);
+const database = process.env.REACT_APP_DATABASE;
+
+if (!database) {
+  throw new Error('REACT_APP_DATABASE environment variable must be set');
+}
+
+const bugsplat = new BugSplat(database, pkg.name, pkg.version);
 bugsplat.setDefaultAppKey('key!');
 bugsplat.setDefaultDescription('description!');
 bugsplat.setDefaultEmail('fred@bugsplat.com');
