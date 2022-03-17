@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { BugSplat, BugSplatProvider } from 'bugsplat-react';
 import App from './App';
 import './index.css';
-import { database, name as application, version } from '../package.json';
+import pkg from '../package.json';
 
-const bugsplat = new BugSplat(database, application, version);
+const bugsplat = new BugSplat(pkg.database, pkg.name, pkg.version);
 bugsplat.setDefaultAppKey('key!');
 bugsplat.setDefaultDescription('description!');
 bugsplat.setDefaultEmail('fred@bugsplat.com');
