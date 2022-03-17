@@ -1,17 +1,7 @@
 import { FallbackProps, useBugSplat } from 'bugsplat-react';
 import styles from './Fallback.module.css';
 
-const CrashLink = (props: { crashId: number; database: string }) => {
-  const { crashId, database } = props;
-
-  const url = `https://app.bugsplat.com/v2/crash?database=${database}&id=${crashId}`;
-
-  return (
-    <a href={url}>
-      Crash {crashId} in database {database}
-    </a>
-  );
-};
+const BASE_CRASH_URL = 'https://app.bugsplat.com/v2/crash';
 
 export default function Fallback({
   resetErrorBoundary,
@@ -19,6 +9,7 @@ export default function Fallback({
 }: FallbackProps) {
   const bugSplat = useBugSplat();
   const database = bugSplat?.database;
+
   const crashId =
     response?.error === null ? response.response.crash_id : undefined;
 
@@ -26,7 +17,9 @@ export default function Fallback({
     <div className={styles.root}>
       {crashId && database && (
         <p>
-          <CrashLink crashId={crashId} database={database} />
+          <a href={`${BASE_CRASH_URL}?database=${database}&id=${crashId}`}>
+            Crash {crashId} in database {database}
+          </a>
         </p>
       )}
       <button className={styles.reset} onClick={resetErrorBoundary}>

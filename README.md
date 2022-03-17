@@ -1,6 +1,9 @@
-[![BugSplat](https://s3.amazonaws.com/bugsplat-public/npm/header.png)](https://www.bugsplat.com)
+# [![BugSplat](https://s3.amazonaws.com/bugsplat-public/npm/header.png)](https://www.bugsplat.com)
+
 ## my-react-crasher
-This repo is an example of how to use BugSplat's [npm package](https://www.npmjs.com/package/bugsplat) in a React application.
+
+This repo is an example of how to use BugSplat's [npm package](https://www.npmjs.com/package/bugsplat-react) in a React application.
+
 1. Clone this repository and run `npm install`
 2. Run `npm run start:build` to build and start the app outside of React's debugger, this is important because otherwise React will intercept crashes. This script will also trigger uploading of source maps via [@bugsplat/symbol-upload](https://www.npmjs.com/package/@bugsplat/symbol-upload).
 3. Navigate to [127.0.0.1:8080](http://127.0.0.1:8080) and click one of the buttons to trigger a crash

@@ -3,13 +3,9 @@ import ReactDOM from 'react-dom';
 import { BugSplat, BugSplatProvider } from 'bugsplat-react';
 import App from './App';
 import './index.css';
-import packageJson from '../package.json';
+import { database, name as application, version } from '../package.json';
 
-const bugsplat = new BugSplat(
-  packageJson.database,
-  packageJson.name,
-  packageJson.version
-);
+const bugsplat = new BugSplat(database, application, version);
 bugsplat.setDefaultAppKey('key!');
 bugsplat.setDefaultDescription('description!');
 bugsplat.setDefaultEmail('fred@bugsplat.com');
@@ -27,7 +23,7 @@ window.addEventListener('unhandledrejection', async (rejection) => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <BugSplatProvider bugSplat={bugsplat}>
+    <BugSplatProvider value={bugsplat}>
       <App />
     </BugSplatProvider>
   </React.StrictMode>,

@@ -4,16 +4,14 @@ import styles from './App.module.css';
 import Fallback from '../Fallback';
 import { useState } from 'react';
 
-const TITLE = 'my-react-crasher';
 const BUGSPLAT_URL = 'https://www.bugsplat.com/';
+const DOCS_REACT_URL =
+  'https://docs.bugsplat.com/introduction/getting-started/integrations/web/react';
 const LINKS = {
   bugsplat: <a href={BUGSPLAT_URL}>BugSplat</a>,
-  react: (
-    <a href="https://docs.bugsplat.com/introduction/getting-started/integrations/web/react">
-      React
-    </a>
-  ),
+  react: <a href={DOCS_REACT_URL}>React</a>,
 };
+
 const ERRORS: Error[] = [
   TypeError('Bug.Splat is not a function'),
   URIError('Malformed URI sequence'),
@@ -21,7 +19,7 @@ const ERRORS: Error[] = [
   RangeError('The argument must be between -500 and 500'),
 ];
 
-function ErrorDisplay(props: { error: Error | null }) {
+function ThrowOnError(props: { error: Error | null }) {
   useErrorHandler(props.error);
   return null;
 }
@@ -35,7 +33,7 @@ function App() {
         <img alt="BugSplat Logo" className={styles.logo} src={logo} />
       </a>
       <div className={styles.content}>
-        <h1>Welcome to {TITLE}</h1>
+        <h1>Welcome to my-react-crasher</h1>
         <p>
           This is a sample application that demonstrates {LINKS.bugsplat} error
           reporting for {LINKS.react} applications built with JavaScript or
@@ -46,7 +44,7 @@ function App() {
           onReset={() => setError(null)}
           resetKeys={[error]}
         >
-          <ErrorDisplay error={error} />
+          <ThrowOnError error={error} />
         </ErrorBoundary>
         <div className={styles.errors}>
           <h2>Errors</h2>
