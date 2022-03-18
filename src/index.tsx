@@ -15,7 +15,6 @@ const bugsplat = new BugSplat(database, pkg.name, pkg.version);
 bugsplat.setDefaultAppKey('key!');
 bugsplat.setDefaultDescription('description!');
 bugsplat.setDefaultEmail('fred@bugsplat.com');
-bugsplat.setDefaultUser('Fred');
 
 window.addEventListener('unhandledrejection', async (rejection) => {
   await bugsplat.post(rejection.reason);
