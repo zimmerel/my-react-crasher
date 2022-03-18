@@ -8,8 +8,16 @@ const BUGSPLAT_URL = 'https://www.bugsplat.com/';
 const DOCS_REACT_URL =
   'https://docs.bugsplat.com/introduction/getting-started/integrations/web/react';
 const LINKS = {
-  bugsplat: <a href={BUGSPLAT_URL}>BugSplat</a>,
-  react: <a href={DOCS_REACT_URL}>React</a>,
+  bugsplat: (
+    <a target="_blank" rel="noreferrer" href={BUGSPLAT_URL}>
+      BugSplat
+    </a>
+  ),
+  react: (
+    <a target="_blank" rel="noreferrer" href={DOCS_REACT_URL}>
+      React
+    </a>
+  ),
 };
 
 const ERRORS: Error[] = [
@@ -29,7 +37,7 @@ function App() {
 
   return (
     <div className={styles.root}>
-      <a href={BUGSPLAT_URL}>
+      <a target="_blank" rel="noreferrer" href={BUGSPLAT_URL}>
         <img alt="BugSplat Logo" className={styles.logo} src={logo} />
       </a>
       <div className={styles.content}>
