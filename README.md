@@ -6,23 +6,36 @@
 ## **<div align="center">Crash and error reporting built for busy developers.</div>**
 
 <div align="center">
-    <a href="https://twitter.com/BugSplatCo">
-        <img alt="Follow @bugsplatco on Twitter" src="https://img.shields.io/twitter/follow/bugsplatco?label=Follow%20BugSplat&style=social">
-    </a>
-    <a href="https://discord.gg/K4KjjRV5ve">
-        <img alt="Join BugSplat on Discord" src="https://img.shields.io/discord/664965194799251487?label=Join%20Discord&logo=Discord&style=social">
-    </a>
+  <a href="https://twitter.com/BugSplatCo">
+    <img
+      alt="Follow @bugsplatco on Twitter"
+      src="https://img.shields.io/twitter/follow/bugsplatco?label=Follow%20BugSplat&style=social"
+    >
+  </a>
+  <a href="https://discord.gg/K4KjjRV5ve">
+    <img
+      alt="Join BugSplat on Discord"
+      src="https://img.shields.io/discord/664965194799251487?label=Join%20Discord&logo=Discord&style=social"
+    >
+  </a>
 </div>
 
 # my-react-crasher
 
-This repo is an example of how to use BugSplat's [npm package](https://www.npmjs.com/package/bugsplat-react) in a React application.
+This repo is an example of how to use BugSplat's
+[npm package](https://www.npmjs.com/package/bugsplat-react)
+in a React application.
 
 ## Prerequisites
 
-In order to properly utilize the symbol upload features of this package, you will need to create an OAuth2 ClientId/ClientSecret pair as shown [here](https://docs.bugsplat.com/introduction/development/web-services/oauth2).
+In order to properly utilize the symbol upload features of this package, you
+will need to create an OAuth2 ClientId/ClientSecret pair as shown
+[here](https://docs.bugsplat.com/introduction/development/web-services/oauth2).
 
-Once you've generated OAuth2 credentials, create a file with the name `.env` at the root of the project and populate with the correct values substituted for `{{clientId}}` and `{{clientSecret}}`. Also include the name of your BugSplat database in place of `{{database}}`.
+Once you've generated OAuth2 credentials, create a file with the name `.env`
+at the root of the project and populate with the correct values substituted
+for `{{clientId}}` and `{{clientSecret}}`. Also include the name of your
+BugSplat database in place of `{{database}}`.
 
 ```text
 SYMBOL_UPLOAD_CLIENT_ID={{clientId}}
@@ -30,7 +43,9 @@ SYMBOL_UPLOAD_CLIENT_SECRET={{clientSecret}}
 BUGSPLAT_DATABASE={{database}}
 ```
 
-`BUGSPLAT_DATABASE` is used to initialize a `BugSplat` instance by this application as well as [@bugsplat/symbol-upload](https://www.npmjs.com/package/@bugsplat/symbol-upload).
+`BUGSPLAT_DATABASE` is used to initialize a `BugSplat` instance
+by this application as well as
+[@bugsplat/symbol-upload](https://www.npmjs.com/package/@bugsplat/symbol-upload).
 
 ## Install
 

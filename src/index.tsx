@@ -20,9 +20,9 @@ init({
   bugSplat.setDefaultDescription('description!');
   bugSplat.setDefaultEmail('fred@bugsplat.com');
 
-  window.addEventListener('unhandledrejection', async (rejection) => {
-    await bugSplat.post(rejection.reason);
-  });
+  window.addEventListener('unhandledrejection', (rejection) =>
+    bugSplat.post(rejection.reason)
+  );
 });
 
 const rootEl = document.getElementById('root');
