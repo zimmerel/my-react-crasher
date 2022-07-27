@@ -1,24 +1,20 @@
-import { ErrorBoundary, useErrorHandler } from 'bugsplat-react';
+import { ErrorBoundary, useErrorHandler } from '@bugsplat/react';
 import logo from '../assets/bugsplat-logo.png';
 import styles from './App.module.css';
 import Fallback from '../Fallback';
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
 
 const BUGSPLAT_URL = 'https://www.bugsplat.com/';
 const DOCS_REACT_URL =
   'https://docs.bugsplat.com/introduction/getting-started/integrations/web/react';
-const LINKS = {
-  bugsplat: (
-    <a target="_blank" rel="noreferrer" href={BUGSPLAT_URL}>
-      BugSplat
+
+function Link({ href, children }: { href?: string; children: ReactNode }) {
+  return (
+    <a target="_blank" rel="noreferrer" href={href}>
+      {children}
     </a>
-  ),
-  react: (
-    <a target="_blank" rel="noreferrer" href={DOCS_REACT_URL}>
-      React
-    </a>
-  ),
-};
+  );
+}
 
 const ERRORS: Error[] = [
   TypeError('Bug.Splat is not a function'),
@@ -37,15 +33,16 @@ function App() {
 
   return (
     <div className={styles.root}>
-      <a target="_blank" rel="noreferrer" href={BUGSPLAT_URL}>
+      <Link href={BUGSPLAT_URL}>
         <img alt="BugSplat Logo" className={styles.logo} src={logo} />
-      </a>
+      </Link>
       <div className={styles.content}>
         <h1>Welcome to my-react-crasher</h1>
         <p>
-          This is a sample application that demonstrates {LINKS.bugsplat} error
-          reporting for {LINKS.react} applications built with JavaScript or
-          TypeScript.
+          This is a sample application that demonstrates
+          <Link href={BUGSPLAT_URL}>BugSplat</Link> error reporting for
+          <Link href={DOCS_REACT_URL}>React</Link> applications built with
+          JavaScript or TypeScript.
         </p>
         <ErrorBoundary
           fallback={(props) => <Fallback {...props} />}

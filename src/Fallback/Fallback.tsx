@@ -1,4 +1,4 @@
-import { FallbackProps, useBugSplat } from 'bugsplat-react';
+import { FallbackProps, getBugSplat } from '@bugsplat/react';
 import styles from './Fallback.module.css';
 
 const BASE_CRASH_URL = 'https://app.bugsplat.com/v2/crash';
@@ -7,7 +7,7 @@ export default function Fallback({
   resetErrorBoundary,
   response,
 }: FallbackProps) {
-  const bugSplat = useBugSplat();
+  const bugSplat = getBugSplat();
   const database = bugSplat?.database;
 
   const crashId =
